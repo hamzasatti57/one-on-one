@@ -1,0 +1,46 @@
+<%= render 'shared/errors', obj: product %>
+<%= form_for  product, product_form_attributes(product) do |f| %>
+
+  <% @product.images.each do |image| %>
+    <div id="image_<%= image.signed_id %>">
+      <%= image_tag(url_for(image), style: "width: 100px") %>
+      <%= link_to 'Remove', delete_image_attachment_admin_product_path(@product, image_id: image.id, banner_img: true),
+                  method: :delete,
+
+                  data: { confirm: 'Are you sure?' } %>
+    </div>
+  <% end %><br>
+
+  <div class="form-group">
+    <%= f.label :Product %>
+    <select name="product_id" id="demo" >
+      <option value="">Please Select</option>
+      <% Product.all.each_with_index  do |product,index| %>
+        <option  data-code="<%= product.id %>" value="<%= product.id %>" <%=   @product.present? ? @product.id == product.id ? "selected" : nil : nil  %>><%= product.title %></option>
+      <% end %>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :print_description, "Product Print Description" %>
+    <%= f.text_field :print_description, class: "form-control", autocomplete: false, placeholder: "Product Print Description", autofocus: true %> <br/>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :is_active %>
+    <%= f.check_box :status %> <br/>
+  </div>
+
+  <%= f.file_field :images, multiple: true %><br><br>
+
+  <%= f.submit class: "btn btn-block btn-primary custom-table-edit-btn"%>
+<% end %>
+
+<script>
+    $(document).ready(function() {
+        var x = new SlimSelect({
+            select: '#demo',
+            placeholder: 'Please Select'
+        });
+    });
+</script>

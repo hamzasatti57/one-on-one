@@ -1,0 +1,65 @@
+<!-- ========================  Main header ======================== -->
+
+<section class="main-header main-header-blog" style="background-image:url(assets/images/gallery-1.jpg)">
+  <header>
+    <div class="container text-center">
+      <h2 class="h2 title">Advertisement</h2>
+      <ol class="breadcrumb breadcrumb-inverted">
+        <li><a href="<%= root_path %>"><span class="icon icon-home"></span></a></li>
+        <li><a href="<%= advertisements_path %>">All Advertisements</a></li>
+        <li><a class="active"><%= @advertisement.title %></a></li>
+      </ol>
+    </div>
+  </header>
+</section>
+
+<!-- ========================  Blog article ======================== -->
+
+<section class="blog">
+
+  <!-- === blog navigation === -->
+
+  <div class="blog-navigation">
+    <!-- === nav previous === -->
+
+    <% if @ad_prev.present? %>
+      <%=  link_to "", @ad_prev, class: "nav-link prev"  %>
+    <% end %>
+
+    <!-- === nav next === -->
+    <% if @ad_next.present? %>
+      <%=  link_to "", @ad_next, class: "nav-link next"  %>
+    <%  end %>
+  </div> <!--/blog-navigation-->
+  <!-- ========================  Blog post ======================== -->
+
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
+        <div class="blog-post">
+          <!-- === blog main image & entry info === -->
+          <div class="blog-image-main">
+            <% if @advertisement.image.attached? %>
+              <%= image_tag(url_for(@advertisement.image)) %><br>
+            <% else %>
+              <img src="/assets/furnishia/product-1.png" alt="" width="360" />
+            <% end %>
+          </div>
+          <div class="blog-post-content">
+            <div class="blog-post-title">
+              <h1 class="blog-title">
+                <%= @advertisement.title %>
+              </h1>
+              <h2 class="blog-subtitle h5">
+                <%= simple_format(@advertisement.description) %>
+              </h2>
+            </div>
+          </div>
+        </div><!--blog-post-->
+      </div><!--col-sm-8-->
+    </div> <!--/row-->
+  </div><!--/container-->
+</section>
+
+
+

@@ -1,0 +1,96 @@
+   <style type="text/css">
+       .list-unstyled h6{
+
+        margin-right: 10px;
+        font-size: 16px
+       }
+
+       @media (max-width: 576px) {
+
+           .list-unstyled h6{
+
+        margin-right: 0px !important;
+        font-size: 16px
+       }
+       .custom-footer-links-style{
+    padding-left: 0;
+    list-style: none;
+    float: left !important;
+
+       }
+
+}
+
+
+
+       @media (max-width: 600px) {
+
+        .custom-category-footer-style{
+
+          margin-top: -50px;
+
+        }
+
+       }
+
+   </style>
+
+
+    <footer class="footer_part fixed-bottom" style="background-color: #1E254E">
+        <div class="container">
+            <div class="row justify-content-around">
+                <div class="col-sm-6 col-lg-2">
+                    <div class="single_footer_part">
+                        <h4 style="color: #fff">1on1.</h4>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-5">
+                    <div class="single_footer_part">
+                        <p style="color: #fff">All rights reserved. No reproduction without permission</p>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-5">
+                    <ul class=" row list-unstyled custom-footer-links-style">
+                        <li style="margin-left: 2%; color: #fff;">Terms & Privacy<span style="margin-left: 5px;">|</span></li>
+                        <li style="margin-left: 2%; color: #fff;">Legal Disclaimer<span style="margin-left: 5px">|</span></li>
+                        <li style="margin-left: 2%; color: #fff;">Sitemap<span style="margin-left: 5px">|</span></li>
+                        <li style="margin-left: 2%; color: #fff;">Contact us</li>
+                    </ul>
+                </div>
+            </div>
+            
+        </div>
+    </footer>
+
+    <script type="text/javascript">
+
+      function validateEmail($email) {
+        var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+        return emailReg.test( $email );
+      }
+      
+        $("#newsletter-submit").click(function () {
+          email = $('#newsletter-form-email').val()
+          if (email == ""){
+            toastr.error('Email is required!');
+            return false;
+          }
+          else if( !validateEmail(email)){
+            toastr.error('Email is not correct!');
+            return false;
+          }
+          else{
+              $.ajax({
+                headers: { 'X-CSRF-Token': Rails.csrfToken() },
+                url: '/home/subscribe_user?email=' + email,
+                type: "POST",
+                processData: false,
+                success: function (data) {
+                  window.location.href = '/';
+                  // toastr.success('Email Subscribe sucessfully')
+                }
+            });
+          }
+        });
+
+    </script>

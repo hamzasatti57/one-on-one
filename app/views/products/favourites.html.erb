@@ -1,0 +1,173 @@
+<style type="text/css">
+  .current{
+         background-color: #ecfdff !important; 
+         color: black;
+  }
+  .current:hover{
+        background-color: #ecfdff !important; 
+        color: black;
+  }
+  .custom-btn-3{
+    padding: 7px 14px !important;
+  }
+  .custom-price-color{
+    color: #e9414f;
+  }
+  .modal-body{
+    padding-top: 30px;
+    padding-bottom: 30px;
+    margin: auto;
+  }
+</style>
+
+  <!--================Home Banner Area =================-->
+  <!-- breadcrumb start-->
+  <section class="breadcrumb breadcrumb_bg" style="background-image:url('<%= asset_path('/assets/img/heart1.png') %>');">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8">
+          <div class="breadcrumb_iner">
+            <div class="breadcrumb_iner_item">
+              <h2>Favourites</h2>
+              <p>Home <span>-</span>Favourites</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- breadcrumb start-->
+
+  <!--================Cart Area =================-->
+  <section class="cart_area padding_top">
+    <div class="container">
+      <div class="cart_inner">
+        <div class="table-responsive">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Product</th>
+                <th scope="col">Price</th>
+                <th scope="col" style="text-align: center;">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @products.each do |product| %>
+              <tr>
+                <td>
+                  <div class="media">
+                    <div class="d-flex">
+                      <% if product.images.present? %>
+                      <%= link_to "/products/#{product.id}" do %>
+                        <img src="<%=url_for(product.images.first) %>">
+                      <% end %>
+                      <%#=image_tag("img/product/single-product/product-1.jpg")%>
+                      <% end %>
+                    </div>
+                    <div class="media-body">
+                      <%= link_to "/products/#{product.id}" do %>
+                        <p><%= product.print_description %></p>
+                      <% end %>
+                    </div>
+                  </div>
+                </td>
+                <td id="per-total-parent">
+                  <h5 id="per-total" class="custom-price-color"><span style="color: #e9414f; font-weight: 500">R<%= product.price.to_i %></span></h5>
+                </td>
+                <td style="text-align: center;">
+                  <div class="product_count">
+                    <a class="like_us_2" style="margin-left: 23px; cursor: pointer; margin-right: 25px"> <i class="fa fa-heart heart-<%= product.id%>" id="product-like" style="font-size: 22px"></i> </a>
+
+                    <%= link_to product_path(product.id), class: "btn_3 custom-btn-3", method: :get do %>
+                                              add to cart
+                                            <% end %>
+                    
+                  </div>
+
+                </td>
+              </tr>
+
+              <div style="display: none">
+                <%= form_for Like.new, remote: true do |f| %>
+                  <div class="form-group">
+                    <%= f.hidden_field(:parent_id, value: product.id ) %>
+                    <%= f.hidden_field(:parent_type, value: Like.parent_type_product ) %>
+                    <%= f.hidden_field(:value, value: true ) %>
+                    <%= f.submit 'Like Project', :class => 'btn btn-main', name: "btnn-#{product.id}", :id => 'like-button' %>
+                   </div>
+                <% end %>
+              </div>
+
+              <script type="text/javascript">
+                $( ".heart-<%= product.id%>" ).click(function() {
+                  if ($(this).hasClass( "fa-heart-o" )) {
+                    $(this).toggleClass('fa-heart-o fa-heart');
+                    toastr.success('Added to favourites')
+                  }
+                  else{
+                    $(this).toggleClass('fa-heart-o fa-heart');
+                    toastr.error('Removed from favourites');
+                    $(this).parent().parent().parent().parent().hide();   
+                  }
+                  $("[name='btnn-<%= product.id%>']").click();
+                });
+              </script>
+              <% end %>
+              <tr class="bottom_button">
+                <td>
+                  <!-- <a class="btn_1" href="#">Update product</a> -->
+                </td>
+                <td></td>
+                <td></td>
+                <td>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="checkout_btn_inner float-right">
+            <a class="btn_1" href="/product_category">Continue Shopping</a>
+          </div>
+        </div>
+      </div>
+  </section>
+  <!--================End product Area =================-->
+
+<div class="modal" id="add_to_cart_modal" style="align-items: center;"> 
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title" >Product Added to cart</h4>
+        <button type="button" class="close close_1" data-dismiss="modal">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body" style="display: inline-flex;">
+          <br>
+          <br>
+          <div class="checkout_btn_inner float-right">
+            <a  class="btn_1 checkout_btn_2" href="" style="margin-left: 20px;">Shop More</a>
+          </div>
+          <div class="checkout_btn_inner float-right">
+            <a  class="btn_1 checkout_btn_1" href="/cart">Go to Cart</a>
+          </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<% if flash[:add_to_cart] %>
+  <script type="text/javascript">
+    $('#add_to_cart_modal').modal('show');
+  </script>
+<% end  %>
+
+  <script type="text/javascript">
+    
+    $(".checkout_btn_2").on('click', function (e) {
+      $('#add_to_cart_modal').modal('hide');
+    });
+  // click counter js
+  </script>

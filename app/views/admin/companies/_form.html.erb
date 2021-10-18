@@ -1,0 +1,11 @@
+<%= render 'shared/errors', obj: company %>
+<%= form_for  company, company_form_attributes(company) do |f| %>
+  <div class="form-group">
+    <%= f.label :title %>
+    <%= f.text_field :title, class: "form-control", autocomplete: false, placeholder: "Title", autofocus: true %> <br/>
+  </div>
+  <%= f.label :brand_logo %>
+  <br>
+  <%= f.file_field :image %><br><br>
+  <%= f.submit "Create Brand", class: "btn btn-block btn-primary"%>
+<% end %>

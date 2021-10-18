@@ -1,0 +1,311 @@
+<style type="text/css">
+  .current{
+   background-color: #ecfdff !important; 
+   color: black;
+  }
+  .current:hover{
+    background-color: #ecfdff !important; 
+    color: black;
+  }
+  .btn-danger{
+    background-color: #25435d;
+    border-color: #25435d;
+  }
+    .btn-danger:hover{
+    background-color: #25435d;
+    border-color: #25435d;
+  }
+ 
+  .product-color{
+ font-size: 15px;
+    font-weight: 300;
+  font-family: "Poppins", sans-serif;
+  
+}
+.product-color-slecion{
+
+color:red;
+  font-size: 15px;
+  font-weight: 300;
+  font-family: "Poppins", sans-serif;
+}
+.custom-cart-img-div img{
+  object-fit: contain !important;
+}
+.input-number-decrement:hover{
+
+  background-color:#dfdfdf;
+   color:#ef4a37;
+}
+.input-number-increment:hover{
+  background-color: #dfdfdf;
+  color:#ef4a37;
+}
+</style>
+
+  <!--================Home Banner Area =================-->
+  <!-- breadcrumb start-->
+  <section class="breadcrumb breadcrumb_bg" style="background-image:url('<%= asset_path('/assets/img/cart-banner.png') %>');">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8">
+          <div class="breadcrumb_iner">
+            <div class="breadcrumb_iner_item">
+              <h2>Cart</h2>
+              <p>Home <span>-</span>Cart</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- breadcrumb start-->
+
+  <!--================Cart Area =================-->
+  <section class="cart_area padding_top">
+    <div class="container">
+      <div class="cart_inner">
+        <div class="table-responsive">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Product</th>
+                <th scope="col">Price</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Sub Total</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @cart.to_a.each do |cart| %>
+              <tr>
+                <td>
+                  <div class="media">
+                    <div class="d-flex custom-cart-img-div">
+                      <% if cart.product.images.present? %>
+                        <%= link_to "/products/#{cart.product.id}" do %>
+                          <img src="<%=url_for(cart.product.images.first) %>">
+                        <% end %>
+                      <% end %>
+                    </div>
+                    <div class="media-body">
+                      <%= link_to "/products/#{cart.product.id}" do %>
+                        <span><%= cart.product.print_description %></span>
+                      <% end %>
+                      <br><span class="product-color">Your Color Selection: </span><span class="product-color-slecion"><%= cart.color.present? ? cart.color.title : "" %></span>
+                    </div>
+                  </div>
+                </td>
+                <td id="per-total-parent">
+                  <h5 style="color: red">R <span id="per-total"><%= cart.product.price.to_i %></span></h5>
+                </td>
+                <td>
+                  <div class="product_count">
+                    <p style="display: none"><%= cart.id %></p>
+                     <span class="input-number-decrement" title="decrement" style="cursor: pointer;"><i class="fa fa-minus" aria-hidden="true"></i></span>
+                     
+                   
+                    <input class="input-number" type="text" value="<%= cart.quantity %>" min="0" max="200"  readonly="readonly">
+                   
+                   <span class="input-number-increment" title="increment" style="cursor: pointer;"> <i class="fa fa-plus"></i></span>
+                   
+                  </div>
+                </td>
+                <td id="sub-total-parent">
+                  <h5 style="color: red">R <span id="sub-total"><%= cart.sub_total.to_i %></span></h5>
+                </td>
+              </tr>
+
+                <div class="modal" id="po_modal_0">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+
+                      <!-- Modal Header -->
+                      <div class="modal-header">
+                        <h4 class="modal-title">Are you sure, want to remove this item from cart?</h4>
+                        <button type="button" class="close modal-close" data-dismiss="modal">&times;</button>
+                      </div>
+
+                      <!-- Modal body -->
+                      <div class="modal-body" style="display: inline-flex; padding-left: 35%;">
+                          <div class="form-group" style="padding-right: 15px;">
+                            <button type="button" class="btn btn-primary delete-cart-item" data-dismiss="modal" value="<%= cart.id %>">Yes</button>
+                          </div>
+
+                          <div class="form-group">
+                           <button type="button" class="btn btn-danger not-delete-cart-item" data-dismiss="modal" value="<%= cart.id %>">No</button>
+                          </div>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+              <div style="display: none">
+              <%= link_to "Delete", delete_cart_product_path(cart), method: :delete, id: "cart-product-#{ cart.id }" %>
+
+              <script type="text/javascript">
+                $(document).on('turbolinks:load', function() {
+                  $('.input-number-decrement').on('click', function(e){
+                    if($(this).parent().find("input").val() == 0){
+                      $('#po_modal_0').modal('show');
+                      // $("#cart-product-<%= cart.id %>")[0].click();
+                      $(".delete-cart-item").val($(this).parent().find("p").text())
+                    }
+                  });
+                })
+
+              $('.delete-cart-item').on('click', function(e){
+                $("#cart-product-" + $(this).val())[0].click();
+              });
+
+              $('.not-delete-cart-item').on('click', function(e){
+                location.reload();
+              });
+
+              $('.modal-close').on('click', function(e){
+                location.reload();
+              });
+              </script>
+              </div>
+              <% end %>
+              <tr class="bottom_button" style="display: none">
+                <td>
+                  <!-- <a class="btn_1" href="#">Update Cart</a> -->
+                </td>
+                <td></td>
+                <td>
+                  <div class="cupon_text float-right">
+                    <a id="update-cart" class="btn_1" style="cursor: pointer;">Update Cart</a>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td></td>
+                <td></td>
+                <td>
+                  <h5>Total</h5>
+                </td>
+                <td>
+                  <h5 style="color: red">R <span id="grand-sum"><%= @sum.to_i %></span></h5>
+                </td>
+              </tr>
+              <tr class="shipping_area" style="display: none">
+                <td></td>
+                <td></td>
+                <td>
+                  <h5>Delivery Fee</h5>
+                </td>
+                <td>
+                  <div class="shipping_box">
+                    <ul class="list">
+                      <!-- <li>
+                        <a href="#">Flat Rate: R0</a>
+                      </li> -->
+                      <!-- <li>
+                        <a href="#">Free Shipping</a>
+                      </li> -->
+                      <!-- <li>
+                        <a href="#">Flat Rate: R0</a>
+                      </li>
+                      <li class="active">
+                        <a href="#">Local Delivery: R0</a>
+                      </li> -->
+                    </ul>
+                    <!-- <h6>
+                      Calculate Shipping
+                      <i class="fa fa-caret-down" aria-hidden="true"></i>
+                    </h6> -->
+                    <select class="shipping_select">
+                      <option value="1">South Africa</option>
+                    </select>
+                    <select class="shipping_select section_bg">
+                      <option value="1">Eastern Cape</option>
+                      <option value="2">Free State</option>
+                      <option value="4">Gauteng</option>
+                      <option value="4">KwaZulu-Natal</option>
+                      <option value="4">Limpopo</option>
+                      <option value="4">Mpumalanga</option>
+                      <option value="4">Northern Cape</option>
+                      <option value="4">North West</option>
+                      <option value="4">Western Cape</option>
+                    </select>
+                    <input type="text" placeholder="Postcode/Zipcode" />
+                    <a class="btn_1" href="#">Update Details</a>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="checkout_btn_inner float-right">
+            <a id="cont-shop" class="btn_1 " href="/">Shop More</a>
+            <a id="proceed-checkout" class="btn_1 checkout_btn_1" href="/checkout">Proceed to Checkout</a>
+          </div>
+        </div>
+      </div>
+  </section>
+
+  <!--================End Cart Area =================-->
+
+  <script type="text/javascript">
+    $('#proceed-checkout').on('click', function(e){
+      if($('#grand-sum').text() == "0"){
+        toastr.success('Please add some items in cart.')
+        return false;
+      }
+      else{
+        $('#update-cart').click();
+      }
+    });
+
+    $('#cont-shop').on('click', function(e){
+      $('#update-cart').click();
+    });
+
+    $('.input-number-increment').on('click', function(e){
+      if($(this).parent().find("input").val() != 200){
+        $(this).parent().find("input").val(parseInt($(this).parent().find("input").val()) + 1);
+        price = parseInt($(this).parent().parent().parent().find("#per-total").text()) + parseInt($(this).parent().parent().parent().find("#sub-total").text())
+        $(this).parent().parent().parent().find("#sub-total").text(price)
+        grand_price = parseInt($("#grand-sum").text()) + parseInt($(this).parent().parent().parent().find("#per-total").text())
+        $("#grand-sum").text(grand_price);
+      }
+    });
+
+    $('.input-number-decrement').on('click', function(e){
+      if($(this).parent().find("input").val() != 0){
+        $(this).parent().find("input").val(parseInt($(this).parent().find("input").val()) - 1);
+        price = parseInt($(this).parent().parent().parent().find("#sub-total").text()) - parseInt($(this).parent().parent().parent().find("#per-total").text())
+        $(this).parent().parent().parent().find("#sub-total").text(price)
+        grand_price = parseInt($("#grand-sum").text()) - parseInt($(this).parent().parent().parent().find("#per-total").text())
+        $("#grand-sum").text(grand_price);
+      }
+    });
+
+    $('#update-cart').on('click', function(e){
+      cart_arr = $(this).parent().parent().parent().siblings().slice(0, $(this).parent().parent().parent().siblings().length - 2)
+      var jsonObject = {}
+      cart_arr.each(function(index, element) {
+        jsonObject[element.children[2].children[0].children[0].textContent] = element.children[2].children[0].children[2].value;
+      });
+      console.log(jsonObject)
+      $.ajax({
+          headers: { 'X-CSRF-Token': Rails.csrfToken() },
+          url:'/products/save_cart',
+          data: { cart_object: jsonObject },
+          dataType: 'json',
+          type:'post',
+          success:function (data) {
+            $("#grand-sum").text(data);
+            // toastr.success('Cart Updated sucessfully')
+            console.log(data);
+          },
+
+          error:function (data) {
+            // alert ('Error');
+          }
+
+      });
+
+    });
+    
+  // click counter js
+  </script>

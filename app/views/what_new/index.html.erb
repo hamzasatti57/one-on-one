@@ -1,0 +1,81 @@
+<!-- ======================== Main header ======================== -->
+
+<section class="main-header" style="background-image:url(assets/images/gallery-3.jpg)">
+  <header>
+    <div class="container">
+      <h1 class="h2 title">What's New</h1>
+      <ol class="breadcrumb breadcrumb-inverted">
+        <li><a href="<%= root_path %>"><span class="icon icon-home"></span></a></li>
+        <li><a class="active">What's New</a></li>
+      </ol>
+    </div>
+  </header>
+</section>
+
+
+
+<!-- ======================== Products ======================== -->
+<section class="products">
+  <div class="container">
+    <!-- === header title === -->
+    <header>
+      <div class="row">
+        <div class="col-md-offset-2 col-md-8 text-center">
+          <h2 class="title">Latest Products</h2>
+          <div class="text">
+            <p>Check out our latest products</p>
+          </div>
+        </div>
+      </div>
+    </header>
+    <div class="row">
+      <!-- === product-item === -->
+      <% index = 0 %>
+      <%  @products.each do |product|  %>
+        <% if product.visibility == true %>
+          <div class="col-md-4 col-xs-6">
+            <% index = index + 1 %>
+            <% if index == 8 %>
+              <% break %>
+            <% end %>
+            <article>
+
+
+              <div class="figure-grid">
+
+                <div class="image">
+                  <% if product.images.attached? %>
+                    <%= link_to product do%>
+                      <%= image_tag(url_for(product.images.first)) %><br>
+                    <% end %>
+                  <% else %>
+                    <%= link_to product do%>
+                      <img src="/assets/furnishia/product-1.png" alt="" width="360" />
+                    <% end %>
+                  <% end %>
+                </div>
+
+                <div class="text">
+                  <%= link_to product do%>
+                    <h2 class="title h4"><%= product.print_description %></h2>
+                  <% end %>
+                  <sup>$ <%= product.price %></sup>
+                  <span class="description clearfix"><%= product.description %></span>
+                </div>
+              </div>
+            </article>
+          </div>
+        <% end %>
+      <% end %>
+
+
+    </div> <!--/row-->
+    <!-- === button more === -->
+
+    <div class="wrapper-more">
+      <a href="<%= popular_list_products_path %>" class="btn btn-main">View more products</a>
+    </div>
+
+  </div> <!--/container-->
+</section>
+

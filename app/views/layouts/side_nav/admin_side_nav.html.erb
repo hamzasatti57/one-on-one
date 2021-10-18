@@ -1,0 +1,366 @@
+<% if user_signed_in? %>
+  <div class="sidebar">
+    <nav class="sidebar-nav">
+      <ul class="nav">
+        <% if current_user.is_admin? %>
+          <% if can? :manage, User %>
+            <li class="nav-item nav-dropdown">
+              <a class="nav-link nav-dropdown-toggle" >
+                <i class="nav-icon icon-cursor"></i> Users</a>
+              <ul class="nav-dropdown-items">
+                  <li class="nav-item">
+                    <%= link_to '<i class="nav-icon icon-cursor"></i> User List'.html_safe, admin_users_path,class:"nav-link" %>
+                  </li>
+                <%# end %>
+                  <!-- <li class="nav-item">
+                    <%#= link_to '<i class="nav-icon icon-cursor"></i> Create New User'.html_safe, new_admin_user_path,class:"nav-link" %>
+                  </li> -->
+                <%# end %>
+              </ul>
+            </li>
+            <li class="nav-item nav-dropdown">
+              <a class="nav-link nav-dropdown-toggle" >
+                <i class="nav-icon  icon-puzzle"></i> Brands</a>
+              <ul class="nav-dropdown-items">
+                <% if can? :read, User %>
+                  <li class="nav-item">
+                    <%= link_to '<i class="nav-icon icon-puzzle"></i> Brands List'.html_safe, admin_companies_path,class:"nav-link" %>
+                  </li>
+                <% end %>
+                <% if can? :create, User %>
+                  <li class="nav-item">
+                    <%= link_to '<i class="nav-icon icon-puzzle"></i> Create New Brand'.html_safe, new_admin_company_path,class:"nav-link" %>
+                  </li>
+                <% end %>
+              </ul>
+            </li>
+
+            <li class="nav-item nav-dropdown">
+              <a class="nav-link nav-dropdown-toggle" >
+                <i class="nav-icon  icon-puzzle"></i> Categories</a>
+              <ul class="nav-dropdown-items">
+                <% if can? :read, User %>
+                  <li class="nav-item">
+                    <%= link_to '<i class="nav-icon icon-puzzle"></i> Categories List'.html_safe, admin_categories_path,class:"nav-link" %>
+                  </li>
+                <% end %>
+                <% if can? :create, User %>
+                  <li class="nav-item">
+                    <%= link_to '<i class="nav-icon icon-puzzle"></i> Create New Category'.html_safe, new_admin_category_path,class:"nav-link" %>
+                  </li>
+                <% end %>
+              </ul>
+            </li>
+
+<!--             <li class="nav-item nav-dropdown">
+              <a class="nav-link nav-dropdown-toggle" >
+                <i class="nav-icon icon-control-play"></i> Blogs</a>
+              <ul class="nav-dropdown-items">
+                <%# if can? :read, User %>
+                  <li class="nav-item">
+                    <%#= link_to '<i class="nav-icon icon-control-play"></i> Blogs List'.html_safe, admin_blogs_path,class:"nav-link" %>
+                  </li>
+                <%# end %>
+                <%# if can? :create, User %>
+                  <li class="nav-item">
+                    <%#= link_to '<i class="nav-icon icon-control-play"></i> Create New Blog'.html_safe, new_admin_blog_path,class:"nav-link" %>
+                  </li>
+                <%# end %>
+              </ul>
+            </li> -->
+<!-- 
+            <li class="nav-item nav-dropdown">
+              <a class="nav-link nav-dropdown-toggle" >
+                <i class="nav-icon icon-share-alt"></i> Advertisements</a>
+              <ul class="nav-dropdown-items">
+                <%# if can? :read, User %>
+                  <li class="nav-item">
+                    <%#= link_to '<i class="nav-icon icon-share-alt"></i> Advertisements List'.html_safe, admin_advertisements_path,class:"nav-link" %>
+                  </li>
+                <%# end %>
+                <%# if can? :create, User %>
+                  <li class="nav-item">
+                    <%#= link_to '<i class="nav-icon icon-share-alt"></i> Create New Advertisement'.html_safe, new_admin_advertisement_path,class:"nav-link" %>
+                  </li>
+                <%# end %>
+              </ul>
+            </li> -->
+
+            <li class="nav-item nav-dropdown">
+              <a class="nav-link nav-dropdown-toggle" >
+                <i class="nav-icon icon-drop"></i> Colors</a>
+              <ul class="nav-dropdown-items">
+                <% if can? :read, User %>
+                  <li class="nav-item">
+                    <%= link_to '<i class="nav-icon icon-drop"></i> Colors List'.html_safe, admin_colors_path,class:"nav-link" %>
+                  </li>
+                <% end %>
+ <!--                <%# if can? :create, User %>
+                  <li class="nav-item">
+                    <%#= link_to '<i class="nav-icon icon-drop"></i> Add New Color'.html_safe, new_admin_color_path,class:"nav-link" %>
+                  </li>
+                <%# end %> -->
+              </ul>
+            </li>
+
+            <li class="nav-item nav-dropdown">
+              <a class="nav-link nav-dropdown-toggle">
+                <i class="nav-icon icon-grid"></i> Subcategories</a>
+              <ul class="nav-dropdown-items">
+                <% if can? :read, User %>
+                  <li class="nav-item">
+                    <%= link_to '<i class="nav-icon icon-grid"></i> Sub Categories List'.html_safe, admin_product_categories_path,class:"nav-link" %>
+                  </li>
+                <% end %>
+                <% if can? :create, User %>
+                  <li class="nav-item">
+                    <%= link_to '<i class="nav-icon icon-grid"></i> Add New Sub Category'.html_safe, new_admin_product_category_path,class:"nav-link" %>
+                  </li>
+                <% end %>
+              </ul>
+            </li>
+
+            <!--          <li class="nav-item nav-dropdown">-->
+            <!--            <a class="nav-link nav-dropdown-toggle" >-->
+            <!--              <i class="nav-icon icon-equalizer"></i> Product Types</a>-->
+            <!--            <ul class="nav-dropdown-items">-->
+            <%# if can? :read, User %>
+            <!--                <li class="nav-item">-->
+            <%#= link_to '<i class="nav-icon icon-equalizer"></i> Product Types List'.html_safe, admin_product_types_path,class:"nav-link" %>
+            <!--                </li>-->
+            <%# end %>
+            <%# if can? :create, User %>
+            <!--                <li class="nav-item">-->
+            <%#= link_to '<i class="nav-icon icon-equalizer"></i> Create New Product Type'.html_safe, new_admin_product_type_path,class:"nav-link" %>
+            <!--                </li>-->
+            <%# end %>
+            <!--            </ul>-->
+            <!--          </li>-->
+<!--             <li class="nav-item nav-dropdown">
+              <a class="nav-link nav-dropdown-toggle" >
+                <i class="nav-icon icon-home"></i> Coutries</a>
+              <ul class="nav-dropdown-items">
+                <%# if can? :read, User %>
+                  <li class="nav-item">
+                    <%#= link_to '<i class="nav-icon icon-home"></i> Countries List'.html_safe, admin_countries_path,class:"nav-link" %>
+                  </li>
+                <%# end %>
+                <%# if can? :create, User %>
+                  <li class="nav-item">
+                    <%#= link_to '<i class="nav-icon icon-home"></i> Add New Country'.html_safe, new_admin_country_path,class:"nav-link" %>
+                  </li>
+                <%# end %>
+              </ul>
+            </li> -->
+<!--             <li class="nav-item nav-dropdown">
+              <a class="nav-link nav-dropdown-toggle" >
+                <i class="nav-icon icon-home"></i> Cities</a>
+              <ul class="nav-dropdown-items">
+                <%# if can? :read, User %>
+                  <li class="nav-item">
+                    <#= link_to '<i class="nav-icon icon-home"></i> Cities List'.html_safe, admin_cities_path,class:"nav-link" %>
+                  </li>
+                <%# end %>
+                <%# if can? :create, User %>
+                  <li class="nav-item">
+                    <%#= link_to '<i class="nav-icon icon-home"></i> Add New City'.html_safe, new_admin_city_path,class:"nav-link" %>
+                  </li>
+                <%# end %>
+              </ul>
+            </li>
+            <li class="nav-item nav-dropdown">
+              <a class="nav-link nav-dropdown-toggle" >
+                <i class="nav-icon icon-home"></i> Jobs</a>
+              <ul class="nav-dropdown-items">
+                <%# if can? :read, User %>
+                  <li class="nav-item">
+                    <%#= link_to '<i class="nav-icon icon-home"></i> Jobs List'.html_safe, admin_jobs_path,class:"nav-link" %>
+                  </li>
+                <%# end %>
+                <%# if can? :create, User %>
+                  <li class="nav-item">
+                    <%#= link_to '<i class="nav-icon icon-home"></i> Add New Job'.html_safe, new_admin_job_path,class:"nav-link" %>
+                  </li>
+                <%# end %>
+              </ul>
+            </li> -->
+            <li class="nav-item nav-dropdown">
+              <a class="nav-link nav-dropdown-toggle" >
+                <i class="nav-icon icon-cursor"></i> Products</a>
+              <ul class="nav-dropdown-items">
+                <li class="nav-item">
+                  <%= link_to '<i class="nav-icon icon-cursor"></i> Products List'.html_safe, admin_products_path,class:"nav-link" %>
+                </li>
+                <!-- <li class="nav-item">
+                  <%#= link_to '<i class="nav-icon icon-cursor"></i> Add New Product'.html_safe, new_admin_product_path,class:"nav-link" %>
+                </li> -->
+               <!--  <li class="nav-item">
+                  <%#= link_to '<i class="nav-icon icon-cursor"></i> Bulk Upload Product'.html_safe, bulk_upload_admin_products_path,class:"nav-link" %>
+                </li> -->
+                <li class="nav-item">
+                  <%= link_to '<i class="nav-icon icon-cursor"></i> Home Banners'.html_safe, home_banners_admin_products_path,class:"nav-link" %>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item nav-dropdown">
+              <a class="nav-link nav-dropdown-toggle" >
+                <i class="nav-icon icon-cursor"></i> Stores</a>
+              <ul class="nav-dropdown-items">
+                <li class="nav-item">
+                  <%= link_to '<i class="nav-icon icon-cursor"></i> Stores List'.html_safe, admin_stores_path,class:"nav-link" %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to '<i class="nav-icon icon-cursor"></i> Add New Store'.html_safe, new_admin_store_path,class:"nav-link" %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to '<i class="nav-icon icon-cursor"></i> Bulk Upload Store'.html_safe, bulk_upload_admin_stores_path,class:"nav-link" %>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <%= link_to '<i class="nav-icon icon-cursor"></i> Order Checkout'.html_safe, order_checkouts_path,class:"nav-link" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to '<i class="nav-icon icon-cursor"></i> Stock Update'.html_safe, stock_updates_path,class:"nav-link" %>
+            </li>
+          <% end %>
+        <% end %>
+        <% if current_user.is_vendor? %>
+          <li class="nav-item nav-dropdown">
+            <a class="nav-link " href="<%= admin_dashboards_path %>">
+              <i class="nav-icon icon-cursor"></i> Dashboard</a>
+          </li>
+          <li class="nav-item nav-dropdown">
+            <a class="nav-link " href="<%= admin_profile_path current_user.profile %>">
+              <i class="nav-icon icon-cursor"></i> Profile</a>
+          </li>
+          <!--          <li class="nav-item nav-dropdown">-->
+          <!--            <a class="nav-link nav-dropdown-toggle" href="#">-->
+          <!--              <i class="nav-icon icon-cursor"></i> Companies</a>-->
+          <!--            <ul class="nav-dropdown-items">-->
+          <!--              <li class="nav-item">-->
+          <%#= link_to '<i class="nav-icon icon-cursor"></i> Companies List'.html_safe, admin_companies_path,class:"nav-link" %>
+          <!--              </li>-->
+          <!--              <li class="nav-item">-->
+          <%#= link_to '<i class="nav-icon icon-cursor"></i> Create New Company'.html_safe, new_admin_company_path,class:"nav-link" %>
+          <!--              </li>-->
+          <!--            </ul>-->
+          <!--          </li>-->
+          <% if current_user.display_products? %>
+            <li class="nav-item nav-dropdown">
+              <a class="nav-link nav-dropdown-toggle" >
+                <i class="nav-icon icon-cursor"></i> Products</a>
+              <ul class="nav-dropdown-items">
+                <li class="nav-item">
+                  <%= link_to '<i class="nav-icon icon-cursor"></i> Products List'.html_safe, admin_products_path,class:"nav-link" %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to '<i class="nav-icon icon-cursor"></i> Add New Product'.html_safe, new_admin_product_path,class:"nav-link" %>
+                </li>
+              </ul>
+            </li>
+            <!--            <li class="nav-item nav-dropdown">-->
+            <!--              <a class="nav-link nav-dropdown-toggle" >-->
+            <!--                <i class="nav-icon icon-drop"></i> Colors</a>-->
+            <!--              <ul class="nav-dropdown-items">-->
+            <!--                <li class="nav-item">-->
+            <%#= link_to '<i class="nav-icon icon-drop"></i> Colors List'.html_safe, admin_colors_path,class:"nav-link" %>
+            <!--                </li>-->
+            <!--                <li class="nav-item">-->
+            <%#= link_to '<i class="nav-icon icon-drop"></i> Create New Color'.html_safe, new_admin_color_path,class:"nav-link" %>
+            <!--                </li>-->
+            <!--              </ul>-->
+            <!--            </li>-->
+
+            <!--            <li class="nav-item nav-dropdown">-->
+            <!--              <a class="nav-link nav-dropdown-toggle">-->
+            <!--                <i class="nav-icon icon-grid"></i> Product Categories</a>-->
+            <!--              <ul class="nav-dropdown-items">-->
+            <!--                <li class="nav-item">-->
+            <%#= link_to '<i class="nav-icon icon-grid"></i> Product Categories List'.html_safe, admin_product_categories_path,class:"nav-link" %>
+            <!--                </li>-->
+            <!--                <li class="nav-item">-->
+            <%#= link_to '<i class="nav-icon icon-grid"></i> Create New Product Categgory'.html_safe, new_admin_product_category_path,class:"nav-link" %>
+            <!--                </li>-->
+            <!--              </ul>-->
+            <!--            </li>-->
+          <%elsif current_user.display_projects? %>
+            <li class="nav-item nav-dropdown">
+              <a class="nav-link nav-dropdown-toggle" >
+                <i class="nav-icon icon-cursor"></i> Projects</a>
+              <ul class="nav-dropdown-items">
+                <li class="nav-item">
+                  <%= link_to '<i class="nav-icon icon-cursor"></i> Projects List'.html_safe, admin_projects_path,class:"nav-link" %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to '<i class="nav-icon icon-cursor"></i> Add New Project'.html_safe, new_admin_project_path,class:"nav-link" %>
+                </li>
+              </ul>
+            </li>
+          <% end %>
+          <li class="nav-item nav-dropdown">
+            <a class="nav-link nav-dropdown-toggle" >
+              <i class="nav-icon icon-home"></i> Jobs</a>
+            <ul class="nav-dropdown-items">
+              <li class="nav-item">
+                <%= link_to '<i class="nav-icon icon-home"></i> Jobs List'.html_safe, admin_jobs_path,class:"nav-link" %>
+              </li>
+              <li class="nav-item">
+                <%= link_to '<i class="nav-icon icon-home"></i> Add New Job'.html_safe, new_admin_job_path,class:"nav-link" %>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item nav-dropdown">
+            <a class="nav-link nav-dropdown-toggle" >
+              <i class="nav-icon icon-home"></i> Advertiesments</a>
+            <ul class="nav-dropdown-items">
+              <li class="nav-item">
+                <%= link_to '<i class="nav-icon icon-home"></i> Advertisements List'.html_safe, admin_advertisements_path,class:"nav-link" %>
+              </li>
+              <li class="nav-item">
+                <%= link_to '<i class="nav-icon icon-home"></i> Add New Advertisment'.html_safe, new_admin_advertisement_path,class:"nav-link" %>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item nav-dropdown">
+            <a class="nav-link nav-dropdown-toggle" >
+              <i class="nav-icon icon-home"></i> Reports</a>
+            <ul class="nav-dropdown-items">
+              <li class="nav-item">
+                <%= link_to '<i class="nav-icon icon-home"></i> General Reporting List'.html_safe, admin_reports_path, class: "nav-link" %>
+              </li>
+              <% if current_user.display_products? %>
+                <li class="nav-item">
+                  <%= link_to '<i class="nav-icon icon-home"></i> Products Categories Report'.html_safe,  category_reporting_admin_reports_path, class: "nav-link" %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to '<i class="nav-icon icon-home"></i> Products Views Report'.html_safe,  detail_product_project_hits_admin_reports_path, class: "nav-link" %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to '<i class="nav-icon icon-home"></i> Products Likes Report'.html_safe,  detail_product_project_likes_admin_reports_path, class: "nav-link" %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to '<i class="nav-icon icon-home"></i> Products Comments Report'.html_safe,  detail_product_project_comments_admin_reports_path, class: "nav-link" %>
+                </li>
+              <%elsif current_user.display_projects? %>
+                <li class="nav-item">
+                  <%= link_to '<i class="nav-icon icon-home"></i> Projects Views Report'.html_safe,  detail_product_project_hits_admin_reports_path, class: "nav-link" %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to '<i class="nav-icon icon-home"></i> Projects Likes Report'.html_safe,  detail_product_project_likes_admin_reports_path, class: "nav-link" %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to '<i class="nav-icon icon-home"></i> Projects Comments Report'.html_safe,  detail_product_project_comments_admin_reports_path, class: "nav-link" %>
+                </li>
+              <% end %>
+              <li class="nav-item">
+                <%= link_to '<i class="nav-icon icon-home"></i> Profile Report'.html_safe,  user_reporting_admin_reports_path, class: "nav-link" %>
+              </li>
+            </ul>
+          </li>
+        <% end %>
+      </ul>
+    </nav>
+    <button class="sidebar-minimizer brand-minimizer" type="button"></button>
+  </div>
+<% end %>

@@ -1,0 +1,335 @@
+<style type="text/css">
+   @media only screen and (max-width: 600px) {
+   .store-counter{
+
+   display:block !important ; 
+
+   margin-left: -7%;
+   }
+   }
+   .custom-google-search-box{
+   padding: 15px;
+   box-shadow: 0 2px 6px 2px rgba(0,0,0,0.2);
+   background-color: white;
+   border: 0 solid #ddd;
+   /* height: 200px;*/
+   margin: 0px 0px 80px 0px !important;
+   }
+   .subscribe_area .counting {
+   font-weight: 700;
+   font-size: 48px;
+   line-height: 60px;
+   margin: 10px 0 25px;
+   }
+   .custom-google-search-box .form-control-borderless {
+   border: none;
+   }
+   .custom-google-search-box .form-control-borderless:hover, .form-control-borderless:active, .form-control-borderless:focus {
+   border: none;
+   outline: none;
+   box-shadow: none;
+   }
+   .custom-search-btn-locator{
+   background-color: #8dc63f;
+   color:#ffffff;
+   }
+   /*---cards style---*/
+   .custom-card-location-style{
+   padding: 10px;
+   background-color: #ecfdff;
+   box-shadow: 0 2px 6px 2px rgba(0,0,0,0.2);
+   }
+   .custom-card-location-style h4{
+   color:#8dc63f;
+   font-size: 22px;
+   margin-bottom: 20px;
+   line-height: 1.7rem;
+   }
+   .custom-card-location-style p{
+   line-height: 1.7rem;
+   color:#8f8b89;
+   margin-bottom: 25px;
+   }
+   .custom-location-cards-section{
+   margin: 0px 0px 20px 0px;
+   }
+   .custom-locator-cards-links{
+   margin-top: 20px;
+
+   width:100%; 
+
+   }
+   .custom-storelocator-section-padding {
+   padding: 70px 0px;
+   }
+
+   /*--- final latest store selection card css---*/
+   .custom-store-locator-card{
+   padding: 10px;
+   background-color: #ecfdff;
+   box-shadow: 0 2px 6px 2px rgba(0,0,0,0.2);
+   margin: 10px 0px;
+   }
+   .custom-store-locator-card h4{
+   color:#8dc63f;
+   font-size: 17px;
+   /* margin-bottom: 20px;
+   line-height: 1.7rem;*/
+   }
+   .custom-store-locator-card p{
+   line-height: 1.2rem;
+   color:#8f8b89;
+   font-size: 14px;
+   margin-bottom: 15px;
+   text-overflow: ellipsis;
+   display: inline-block;
+   white-space: nowrap;
+   overflow: hidden;
+   width: 100%;
+   }
+   .custom-store-locator-card-link{
+   margin-top: 20px;
+   width:100%; 
+   font-size: 14px;
+   }
+
+   .location_card {
+   /*box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);*/
+   padding: 16px;
+   /*background-color: #d7d7d7;*/
+   height: 170px;
+   }
+   .location_card h3{
+   font-size: 18px;
+   margin-bottom: 15px;
+   }
+   .location_card span{
+   font-weight: 300;
+   font-size: 16px;
+   }
+   .address-content-div .address-margin{
+   margin-bottom: 15px;
+   }
+   .address-margin p{
+   font-weight: 600;
+   font-size: 15px;
+   }
+   .address-content-div .address-margin span{
+   font-size: 16px;
+   }
+   /*------ cards select -----*/
+   .custom-store-tab label {
+   width: 100%;
+   font-size: 1rem;
+   }
+   /*.custom-store-tab .card-input-element+.card {
+   padding:10px;
+   border: 1px solid transparent;
+   border-radius: 0px;
+   box-shadow: 0 2px 6px 2px rgba(0,0,0,0.2);
+   background-color:  #ecfdff !important;
+   }*/
+   .custom-store-tab .card-input-element:checked+.card{
+   border: 1px solid var(--primary);
+   -webkit-transition: border .3s;
+   -o-transition: border .3s;
+   transition: border .3s;
+   background-color: #19416a!important;
+   color:#ffffff;
+   }
+   .custom-store-tab .card-input-element:checked+.card h4 {
+   color:#ffffff;
+   }
+   .custom-store-tab .card-input-element:checked+.card p {
+   color:#ffffff;
+   }
+   .custom-store-tab .card-input-element:checked+.card::after {
+   height: 175px;
+   -webkit-animation-name: fadeInCheckbox;
+   animation-name: fadeInCheckbox;
+   -webkit-animation-duration: .5s;
+   animation-duration: .5s;
+   -webkit-animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+   animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+   }
+   /*.custom-card-selection-body{
+   padding: 0px;
+   }*/
+
+
+
+   /*---dropdown--------*/
+
+   .option-list .current{
+
+    color:black !important;
+    background: transparent !important;
+    padding: 0px !important;
+   }
+
+
+   .contact-section{
+
+    margin: 80px 0px;
+   }
+   .nice-select.open .list{
+      max-height: 300px;
+      overflow: auto;
+   }
+
+</style>
+<section class="breadcrumb breadcrumb_bg" style="background-image:url('<%= asset_path('/assets/img/store-locator-banner.png') %>');">
+   <div class="container">
+      <div class="row">
+         <div class="col-lg-12">
+            <div class="breadcrumb_iner">
+               <div class="breadcrumb_iner_item">
+                  <h2 style="padding-right: 2%">Visit Us</h2>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</section>
+<!-- ========================  Contact ======================== -->
+
+<section class="contact-section">
+   <div class="container">
+      <div class="row mb-3">
+        <div class="col-md-6">
+          <div class="custom-select-location">
+            <select class="option-list" id="city-select" data-show-subtext="true" data-live-search="true">
+              <option class="option-list" id="default-city">Please Select City</option>
+              <% Store.all.pluck(:store_city).sort.uniq.each do |store| %>
+                <option class="option-list" data-subtext="<%= store %>" value="<%= store %>"><%= store %></option>
+              <% end %>
+            </select>
+          </div>
+        </div>
+      </div>
+      
+      <div class="row">
+         <div class="col-md-6">
+            <div class="custom-store-tab ">
+               <div class="row">
+                <% @stores.to_a.each do |store| %>
+                  <div class="col-md-6">
+                     <label class="store-info">
+                        <input type="radio" name="demo" class="card-input-element d-none" id="demo1">
+                        <!-- <div class="card card-body bg-light"> -->
+                        <!--  <div class="location_card">
+                           <h3>Card 1</h3>
+                           <span>Some text</span><br>
+                           <span>Some text</span>
+                           </div> -->
+                        <div class="card custom-store-locator-card">
+                          <% if store.images.present? %>
+                            <%= image_tag(url_for(store.images.first), class: "card-img-top")%>
+                          <% else %>
+                            <%= image_tag("img/Fairprice-card-img.jpg", class: "card-img-top")%>
+                           <% end %>
+                           <div class="card-body">
+                              <h4 class="card-title"><%= store.store_name %></h4>
+                              <p class="card-text"><%= store.store_address %></p>
+                              <div style="border:1px solid #deeff0"></div>
+                              <a href="#" class="btn btn-success card-link custom-store-locator-card-link">Read More</a>
+                           </div>
+                        </div>
+                        <!--  </div> -->
+                     </label>
+                  </div>
+                  <% end %>
+               </div>
+            </div>
+         </div>
+          <%= render partial: 'store_info' %>
+      </div>
+   </div>
+</section>
+<!-- location-cards  -->
+</div>
+<!-- ================ contact section start ================= -->
+<section class="subscribe_area custom-storelocator-section-padding">
+   <div class="container">
+      <div class="row ">
+         <div class="col-lg-12">
+            <div class="subscribe_area_text text-center">
+               <h3>SEARCH FOR A STORE NEAR YOU</h3>
+               <h5>See which stores are near your location or simply click the show all button to view all our stores</h5>
+               <div class="row">
+                  <div class="col-md-4">
+                     <div style="padding: 20px">
+                        <h1 class="counting" data-count="<%= Store.count %>">0</h1>
+                        <h2 style="text-transform: capitalize;">Stores</h2>
+                        <p>and counting</p>
+                     </div>
+                  </div>
+                  <div class="col-md-4">
+                     <div style="padding: 20px">
+                        <h1 class="counting" data-count="<%= Product.count %>">0</h1>
+                        <h2 style="text-transform: capitalize;">Products</h2>
+                        <p>and counting</p>
+                     </div>
+                  </div>
+                  <div class="col-md-4">
+                     <div style="padding: 20px">
+                        <h1 class="counting" data-count="<%= User.where.not(role: 'admin').count %>">0</h1>
+                        <h2 style="text-transform: capitalize;">Clients</h2>
+                        <p>and counting</p>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</section>
+<div style="display: none">
+   <p id="lat_long"><%= @lat_long %>></p>
+</div>
+
+<!-----Counter Scripts------->
+<script type="text/javascript">
+
+  $('select').on('change', function() {
+     window.location.href = '/store_locator?search=' + this.value
+     return false;
+  });
+   // number count for stats, using jQuery animate
+   
+   $('.counting').each(function() {
+   var $this = $(this),
+       countTo = $this.attr('data-count');
+   
+   $({ countNum: $this.text()}).animate({
+     countNum: countTo
+   },
+   
+   {
+   
+     duration: 3000,
+     easing:'linear',
+     step: function() {
+       $this.text(Math.floor(this.countNum));
+     },
+     complete: function() {
+       $this.text(this.countNum);
+       //alert('finished');
+     }
+   
+   });  
+   
+   });
+   
+   $('.custom-search-btn-locator').click(function () {
+       window.location.href = '/store_locator?search=' + $('.form-control-borderless').val();
+       return false;
+       // window.location.href = '/'
+   });
+
+</script>
+<script type="text/javascript">
+   $(document).ready(function() {
+   $('.mdb-select').materialSelect();
+   });
+</script>

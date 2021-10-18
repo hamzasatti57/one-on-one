@@ -1,0 +1,80 @@
+<!-- ========================  Main header ======================== -->
+
+<section class="main-header" style="background-image:url(assets/images/gallery-2.jpg)">
+  <header>
+    <div class="container">
+      <h1 class="h2 title">Advertisements</h1>
+      <ol class="breadcrumb breadcrumb-inverted">
+        <li><a href="<%= root_path %>"><span class="icon icon-home"></span></a></li>
+        <li><a class="active" >All Advertisements</a></li>
+      </ol>
+    </div>
+  </header>
+</section>
+
+<!-- ========================  Blog ======================== -->
+
+<section class="blog custom-city-show">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-9">
+        <div class="row">
+          <% @advertisements.each do |advertisement| %>
+            <div class="col-md-4">
+              <article>
+                <%= link_to advertisement do%>
+                  <div class="image advrt-img" >
+                    <% if advertisement.image.attached? %>
+                      <%= image_tag(url_for(advertisement.image)) %>
+                    <% else %>
+                      <img src="/assets/furnishia/product-1.png"  />
+                    <% end %>
+                  </div>
+                  <div class="entry entry-table">
+                    <div class="date-wrapper">
+                      <div class="date">
+                        <span><%= advertisement.updated_at.strftime('%b')%></span>
+                        <strong><%= advertisement.updated_at.strftime('%d')%></strong>
+                        <span><%= advertisement.updated_at.strftime('%Y')%></span>
+                      </div>
+                    </div>
+                    <div class="title">
+                      <h2 class="h5"><%= advertisement.title %></h2>
+                    </div>
+                  </div>
+                <% end %>
+              </article>
+            </div>
+          <% end %>
+        </div>
+        <!-- === pagination === -->
+        <div class="pagination-wrapper">
+          <%= will_paginate @advertisements %>
+        </div> <!--/pagination-->
+      </div>
+      <!-- === blog-menu === -->
+      <div class="col-md-3">
+        <aside>
+          <div class="box box-posts">
+            <h5 class="title">Popular advertisements</h5>
+            <ul>
+              <% @popular_advertisements.each do |advertisement| %>
+                <li>
+                  <%= link_to advertisement do%>
+                    <div class="date">
+                      <span><%= advertisement.updated_at.strftime('%b')%></span>
+                      <strong><%= advertisement.updated_at.strftime('%d')%></strong>
+                      <span><%= advertisement.updated_at.strftime('%Y')%></span>
+                    </div>
+                    <span class="text"><%= advertisement.title %></span>
+                  <% end %>
+                </li>
+              <% end %>
+            </ul>
+          </div>
+        </aside>
+      </div>
+    </div> <!--/row-->
+  </div><!--/container-->
+</section>
+

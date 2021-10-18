@@ -1,0 +1,81 @@
+
+
+
+
+
+<!--Use class "navbar-fixed" or "navbar-default" -->
+<!--If you use "navbar-fixed" it will be sticky menu on scroll (only for large screens)-->
+
+<!-- ======================== Navigation ======================== -->
+
+
+<!-- ========================  Main header ======================== -->
+
+<section class="main-header" style="background-image:url(assets/images/gallery-2.jpg)">
+  <header>
+    <div class="container">
+      <h1 class="h2 title">Popular Vendors</h1>
+      <ol class="breadcrumb breadcrumb-inverted">
+        <li><a href="<%= root_path %>"><span class="icon icon-home"></span></a></li>
+        <li><a class="active" >Popular Vendors</a></li>
+      </ol>
+    </div>
+  </header>
+</section>
+
+<!-- ========================  Product ======================== -->
+
+<section class="product custom-city-show">
+  <!-- === product-info === -->
+  <div class="container">
+    <div class="row">
+      <% @popular_vendors.each do |vendor| %>
+        <% if vendor.display_products? %>
+          <div class="col-md-4">
+            <div class="designer" style="margin-top: 0">
+              <div class="box">
+                <div class="image">
+                  <% if vendor.profile.image.attached? %>
+                    <%= image_tag(url_for(vendor.profile.image)) %>
+                  <%else %>
+                    <img src="/assets/furnishia/user-1.jpg" />
+                  <% end %>
+                </div>
+                <div class="name">
+                  <% if vendor.display_products? %>
+                    <%= link_to profiles_path(user_id: vendor.id) do %>
+                      <div class="h3 title"><%= vendor.full_name %> <small><%= vendor.category_title %></small></div>
+                    <% end %>
+                  <% end %>
+                  <% if vendor.display_projects? %>
+                    <%= link_to profiles_path(user_id: vendor.id) do %>
+                      <div class="h3 title"><%= vendor.full_name %> <small><%= vendor.category_title %></small></div>
+                    <% end %>
+                  <% end %>
+                  <hr/>
+                  <p><i class="icon icon-envelope"></i> <%= vendor.email %></p>
+                  <p><i class="icon icon-phone-handset"></i> <%= vendor.profile.phone %></p>
+                  <p>
+                    <a href="<%= vendor.profile.facebook %>" class="btn btn-main btn-xs"><i class="fa fa-facebook"></i></a>
+                    <a href="<%= vendor.profile.instagram %>" class="btn btn-main btn-xs"><i class="fa fa-instagram"></i></a>
+                    <a href="<%= vendor.profile.twitter %>" class="btn btn-main btn-xs"><i class="fa fa-twitter"></i></a>
+                  </p>
+                </div> <!--/name-->
+              </div> <!--/box-->
+            </div> <!--/designer-->
+          </div>
+        <% end %>
+      <% end %>
+
+    </div><!--/container-->
+  </div>
+  <!--/info-->
+</section>
+
+<!-- ========================  Product info popup - quick view ======================== -->
+
+
+<div class="pagination-wrapper">
+  <%= will_paginate @popular_vendors %>
+</div>
+

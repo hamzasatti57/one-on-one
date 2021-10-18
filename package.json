@@ -1,0 +1,7 @@
+{
+  "name":"one_on_one",
+  "private": true,
+  "dependencies": {
+    "jquery-zoom": "^1.7.21"
+  }
+}

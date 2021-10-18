@@ -1,0 +1,33 @@
+<div class="card">
+  <div class="card-header custom-card-header">
+    <i class="fa fa-align-justify"></i> Listing all Advertisements</div>
+  <div class="card-body">
+    <table id="advertisement-table" class="table table-striped table-bordered display">
+      <thead>
+      <tr>
+        <th>Sr#</th>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Actions</th>
+      </tr>
+      </thead>
+      <tbody>
+      <% @advertisements.each_with_index do |advertisement, index| %>
+        <tr>
+          <td><%= index + 1 %></td>
+          <td><%= advertisement.title %></td>
+          <td><%= truncate(advertisement.description, length: 20) %></td>
+
+          <td><%= link_to "Edit",  edit_admin_advertisement_path(advertisement), class: "btn btn-xs custom-table-edit-btn btn-primary" %>
+            <%= link_to "Delete", admin_advertisement_path(advertisement), method: :delete , data: {confirm: "Are you sure?"} , class: "btn btn-xs btn-danger custom-table-delt-btn" %></td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+<script>
+    $(document).ready( function () {
+        $('#advertisement-table').dataTable();
+    } );
+</script>

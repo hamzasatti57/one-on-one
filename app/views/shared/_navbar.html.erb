@@ -1,0 +1,375 @@
+
+
+<style type="text/css">
+  .custom-dropdown:hover{
+        background-color: #ecfdff;
+  }
+
+
+.search_input form input::placeholder {
+  color: white!important;
+}
+
+  .custom-navbar-section .dropdown-item:focus, .dropdown-item:hover{
+    background-color: transparent !important;
+  }
+
+         @media only screen and (max-width: 600px) {
+          .custom-navbar-section{
+           margin-left: -13px !important;
+          }
+             .custom-navbar-section .drop-menu-style{
+         /*border: 0px solid transparent;*/
+         background-color: #e9414f;
+         color:#ffffff;
+         border-radius: 5px !important;
+         padding:10px;
+         width:100% !important;
+         padding:10px;
+         z-index:111111111;
+         margin-top: 10px !important;
+         }
+        .custom-navbar-section  li:hover > ul {
+         display: block; 
+         position: relative !important;
+         }
+        .hearer_icon{
+          text-align: right;
+          margin-right: 2px !important;
+        }
+         .custom-header-icon{
+            text-align: right;
+            margin-right: -35px;
+  }
+}
+
+
+
+@media only screen and (min-width: 768px) and (max-width: 1200px) {
+ .custom-header-icon{
+            text-align: right;
+            margin-right: 0px !important;
+          }
+}
+
+
+@media only screen and (min-width: 1200px) and (max-width: 2000px) {
+ .custom-header-icon{
+            text-align: right;
+            margin-right: 0px !important;
+          }
+}
+
+
+@media (max-width: 767px) {
+
+           .custom-header-icon{
+            text-align: right;
+            margin-right: 0px !important;
+          }
+
+}
+/*------------Media Querry End ----------*/
+        .custom-navbar-section .drop-menu-style{
+         /*border: 0px solid transparent;*/
+         background-color: #e9414f;
+         color:#ffffff;
+         border-radius: 5px !important;
+         padding:10px;
+         width:auto;
+         }
+         .custom-navbar-section .drop-menu-style li a{
+         font-size: 14px;
+         padding: 5px 10px !important;
+         color: #fff !important;
+         background-color: #e9414f;
+         text-transform: capitalize;
+         border-radius: 5px !important;
+         }
+       .custom-navbar-section  ul li {
+         display: block;
+         position: relative;
+         float: left;
+         color:white;
+         }
+         /* This hides the dropdowns */
+        .custom-navbar-section li ul {
+         display: none;
+         color:white;
+         }
+       .custom-navbar-section  ul li a {
+         display: block;
+         padding: 1em;
+         text-decoration: none;
+         white-space: nowrap;
+         color:white;
+         }
+         .custom-navbar-section li:hover > ul {
+         display: block; 
+         position: absolute;
+         }
+        .custom-navbar-section li:hover li {
+         float: none;
+         }
+         .main-navigation li ul li {
+         border-top: 0;
+         }
+         /* Displays second level dropdowns to the right of the first level dropdown */
+         ul ul ul {
+         left: 100%;
+         top: 0; 
+         }
+         /* Simple clearfix */
+         .custom-navbar-section ul:before,
+         .custom-navbar-section ul:after { .custom-navbar-section
+         content: " "; /* 1 */
+         display: table; /* 2 */
+         }
+         .custom-navbar-section ul:after {
+         clear: both;
+         }
+         .custom-navbar-section .dropdown-item:focus, .dropdown-item:hover{
+         background-color: #e9414f;
+         }
+         .icon-right{
+             float:right;
+          }
+          .main_menu a .fa-caret-right{
+             color: white;
+          }
+          .custom-mega-menu-style{
+            width: 390px !important;
+            columns: 2;
+          }
+
+          /*-------logo ------*/
+          .custom-fair-logo-div{
+            width: 240px;
+          } 
+
+          .custom-fair-logo-div img{
+            margin-bottom:20px;
+          } 
+
+          .custom-header-icon{
+            text-align: right;
+            margin-right: -35px;
+          }
+
+
+
+
+</style>
+
+
+<% if current_user.present? %>
+  <style type="text/css">
+    .main_menu .cart i:after{
+      content: "<%= current_user.user_carts.where(status: 0).present? ? current_user.user_carts.where(status: 0).last.user_cart_products.count : 0; %>";
+    }
+  </style>
+<% end %>
+<!-- <div class="custom-top-bar">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <ul class="pull-right">
+                    <li>Support</li>
+                    <li><i class="fa fa-phone"></i> <a href="tel:0877402101">087 740 2101</a></li>
+                    <li><i class="fa fa-envelope-o"></i><a href="mailto:enquires@fairprice.co.za">enquires@fairprice.co.za</a></li>
+                </ul>
+                <p> <span></span></p>
+            </div>
+        </div>
+    </div>
+  </div> -->
+    <header class="main_menu home_menu">
+        <div class="container">
+            <div class="row align-items-center">
+                <!-- <div class="col-lg-12">
+                  <div class="hearer_icon custom-header-icon" >
+                    <ul class="navbar-nav" style="display: contents;">
+                      <%# if current_user.present? %>
+                        <li class="nav-item" style="padding-bottom: 3px;">
+                          <%#= link_to destroy_user_session_path, method: :delete, class: "dropdown-item custom-dropdown" do %>
+                            <i class="fa fa-sign-out" aria-hidden="true" style="font-size: 25px;" title="Logout"></i>
+                          <%# end %>
+                        </li>
+                      <%# else %>
+                      <div style="display: inline-flex;">
+                        <li class="nav-item" style="margin-right: 16px;">
+                            <a class="nav-link" href="/users/sign_in">Sign in</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/users/sign_up">Register</a>
+                        </li>
+                        
+                      </div>
+                      <%# end%>
+                    </ul>
+                  </div>
+                </div> -->
+                <div class="col-lg-12">
+                <div class="custom-navbar-section">
+                    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #ecfdff;">
+                      <div class="custom-fair-logo-div">
+                        <a class="navbar-brand" style="margin: 0px">
+                          <%= link_to "/" do %>
+                            <h1 style="color: #1E254E">1on1.</h1>
+                            <%#=image_tag("img/Logo.svg", width: '100%') %>
+                          <% end %>
+                        </a>
+                        </div>
+                      <!--   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"></button> -->
+                        
+                        <button type="button" class="navbar-toggler"  data-toggle="collapse"
+                            data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent">
+                            <span class="menu_icon"><i class="fa fa-bars"></i></span>
+                        </button>
+
+                     <div class="collapse navbar-collapse main-menu-item" id="navbarSupportedContent">
+                       <ul class="navbar-nav">
+<!--                            <li class="nav-item">
+                              <a class="nav-link" href="/">Home</a>
+                           </li>
+                           <li class="nav-item dropdown">
+                              <a class="nav-link dropdown-toggle" href="" id="navbarDropdown_1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#">Shop</a>
+                              <ul class="drop-menu-style dropdown-menu" style="width: 250px;margin-top: -10px;">
+                                <%# Category.order('LOWER(title)').each do |category| %>
+                                  <li><a class="dropdown-item" href="/product_category?type=<%#= category.title.gsub(" ", "_") %>"> <%#= category.title %>
+                                    <%# if category.product_categories.present? %>
+                                      <span class="icon-right"><i class="fa fa-caret-right" aria-hidden="true"></i></span>
+                                    <%# end %>
+                                  </a>
+
+                                  <%# if category.product_categories.present? %>
+                                    <ul class="drop-menu-style <%#= category.product_categories.count > 6 ? 'custom-mega-menu-style' : '' %>" style="width: 250px; margin-top: -10px;">
+                                      <%# category.product_categories.order('LOWER(title)').each do |product_category| %>
+                                        <li > <a href="/product_category?type=<%#= category.title %>&category=<%#= product_category.title %>"> <%#= product_category.title %></a></li>
+                                      <%# end %>
+                                    </ul>
+                                  <%# end %>
+                                  </li>
+                                <%# end %>
+                              </ul>
+                           </li>
+                           <li class="nav-item">
+                              <a class="nav-link" href="/products/promotions">Promotions</a>
+                           </li>
+                           <li class="nav-item dropdown">
+                              <a class="nav-link dropdown-toggle">Contact Us</a>
+                              <ul class="drop-menu-style dropdown-menu">
+                                 <li><a class="dropdown-item" href="#">Store Contact Numbers</a></li>
+                                 <li><a class="dropdown-item" href="/contact_us">Support Centre</a></li>
+                                 <li><a class="dropdown-item" href="/store_locator">Visit Us </a></li>
+                              </ul>
+                           </li>
+                           <li class="nav-item">
+                              <a class="nav-link" href="/about">About</a>
+                           </li>
+                           <li class="nav-item dropdown">
+                              <a class="nav-link dropdown-toggle">My Account</a>
+                              <ul class="drop-menu-style dropdown-menu">
+                                 <li><a class="dropdown-item" href="#">Returns/Exchanges</a></li>
+                                 <li><a class="dropdown-item" href="/tracking">track my order</a></li>
+                                 <%# if current_user.present? %>
+                                   <li>
+                                    <%#= link_to destroy_user_session_path, method: :delete, class: "dropdown-item custom-dropdown" do %>
+                                      Logout
+                                    <%# end %>
+                                   </li>
+                                 <%# end %>
+                              </ul>
+                           </li> -->
+                        </ul>
+
+                        </div>
+                        <div class="hearer_icon d-flex">
+                            <!-- <a id="search_1" href="javascript:void(0)"><i class="fa fa-search" title="Search"></i></a>
+                            <%# if current_user.present? %>
+                              <a href="/products/favourites"><i class="fa fa-heart" title="Favourites"></i></a>
+                              <div class="dropdown cart">
+                                  <a class="dropdown-toggle" href="" id="navbarDropdown3" role="button"
+                                      data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <%#= link_to "/cart" do %>
+                                      <i class="fa fa-cart-plus" style="" title="Cart"></i>
+                                    <%# end %>
+                                  </a>
+                            <%# end %> -->
+                                <!-- <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <div class="single_product">
+    
+                                    </div>
+                                </div> -->
+                                
+                            </div>
+
+                  <div class="hearer_icon custom-header-icon" >
+                    <ul class="navbar-nav" style="display: contents;">
+                      <% if current_user.present? %>
+                        <li class="nav-item" style="padding-bottom: 3px;">
+                          <%= link_to destroy_user_session_path, method: :delete, class: "dropdown-item custom-dropdown" do %>
+                            <i class="fa fa-sign-out" aria-hidden="true" style="font-size: 25px;" title="Logout"></i>
+                          <% end %>
+                        </li>
+                      <% else %>
+                      <div style="display: inline-flex;">
+                        <li class="nav-item" style="margin-right: 16px;">
+                            <a class="nav-link" href="/users/sign_in">Sign in</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/users/sign_up">Register</a>
+                        </li>
+                        
+                      </div>
+                      <% end%>
+                    </ul>
+                  </div>
+                        </div>
+                    </nav>
+                  </div>
+                </div>
+            </div>
+        </div>
+<!-- <i class="fa fa-search" title="Search"></i> -->
+        
+        <div class="search_input" id="search_input_box">
+            <div class="container ">
+                <form class="d-flex justify-content-between search-inner" id="form-target">
+                    <input type="text" class="form-control" id="search_input" placeholder="Search here..." id="field4">
+                    <button type="submit" class="btn"></button>
+                    <span class="ti-close fa fa-search" id="search-query" title="Close Search"></span>
+                </form>
+            </div>
+        </div>
+    </header>
+
+    <script type = "text/javascript">
+   $(function () { $('#navbarSupportedContent').collapse('hide')});
+</script>
+
+    <script type="text/javascript">
+      // $(document).ready(function(){
+        // Search Toggle
+        $("#search_input_box").hide();
+        $("#search_1").on("click", function () {
+          $("#search_input_box").slideToggle();
+          $("#search_input").focus();
+        });
+        $("#close_search").on("click", function () {
+          $('#search_input_box').slideUp(500);
+        });
+      // })
+
+        $("#search-query").on("click", function () {
+          search_query = $('#search_input').val()
+          window.location.href = '/product_category?search_query=' + search_query
+        });
+
+        $( "#form-target" ).submit(function( event ) {
+          search_query = $('#search_input').val()
+          window.location.href = '/product_category?search_query=' + search_query
+          event.preventDefault();
+        });
+
+    </script>

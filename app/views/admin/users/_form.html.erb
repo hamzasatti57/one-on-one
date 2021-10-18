@@ -1,0 +1,69 @@
+<%#= form_for(@user, html: {class: "form-horizontal", role: "form"} ) do |f| %>
+<%= render 'shared/errors', obj: user %>
+<%= form_for  user, user_form_attributes(user) do |f| %>
+  <div class="row">
+    <div class="col-md-6">
+      <%= f.label :first_name, "First Name" %>
+      <%= f.text_field :first_name, class: "form-control", autocomplete: false, placeholder: "First Name", autofocus: true,:required => true %> <br/>
+    </div>
+    <div class="col-md-6">
+      <%= f.label :last_name, "Last Name" %>
+      <%= f.text_field :last_name, class: "form-control", autocomplete: false, placeholder: "Last Name",:required => true %> <br/>
+    </div>
+  </div>
+  <br>
+<!--   <div class="form-group">
+    <%#= f.label :country %>
+    <%#= select_tag("Country", options_for_select(country_options, selected_country(user)),{prompt: "Please Select Country", :required => true,:id => 'country_select' ,:class => 'form-control', :onchange => 'country_onchange_handler()'}) %>
+
+  </div>
+  <div class="form-group">
+    <%#= f.label :City %>
+    <%#= f.select(:city_id, options_for_select(city_options(user), selected: selected_city(user)), { prompt: "Please Select City" }, { :required => true, class: 'form-control' } ,) %>
+  </div> -->
+  <div class="form-group">
+    <%= f.label :username %>
+    <%= f.text_field :username, class: "form-control", autocomplete: false, placeholder: "Username", :required => true %> <br/>
+  </div>
+  <div class="form-group">
+    <%= f.label :Email %>
+    <%= f.text_field :email, class: "form-control", autocomplete: false, placeholder: "Email" , :required => true%> <br/>
+  </div>
+
+  <% if hide_password? user %>
+    <div class="form-group">
+      <%= f.label :Password %>
+      <%= f.password_field :password, class: "form-control", autocomplete: false, placeholder: "Password" , :required => true%> <br/>
+    </div>
+    <div class="form-group">
+      <%= f.label :password_confirmation,"Password Confirmation" %>
+      <%= f.password_field :password_confirmation, class: "form-control", autocomplete: false, placeholder: "Password Confirmation" ,:required => true %> <br/>
+    </div>
+  <% end %>
+    <div class="form-group">
+    <%= f.label :contact_details %>
+    <%= f.text_field :contact_details, class: "form-control", autocomplete: false, placeholder: "Cellphone" %> <br/>
+  </div>
+  <div class="form-group">
+    <%= f.label :dob, "DOB" %>
+    <%= f.text_field :dob, class: "form-control", autocomplete: false, placeholder: "Date of Birth" %> <br/>
+  </div>
+<!--   <div class="form-group">
+    <%#= f.label :Category %>
+    <%#= f.select(:category_id, options_for_select(category_options, selected: selected_category(user)), { prompt: "Please Select Category" }, { :required => true, class: 'form-control' }) %>
+  </div> -->
+<!--   <div class="form-group">
+    <%#= f.label "Active" %>
+    <%#= f.check_box :active  %> <br />
+  </div> -->
+
+  <%= f.submit class: "btn btn-block custom-table-edit-btn btn-primary"%>
+<% end %>
+
+<script>
+    function country_onchange_handler(){
+        $.ajax({
+            url: "/admin/countries/get_cities?country_id=" + $('#country_select option:selected').val()
+        })
+    }
+</script>
