@@ -20,7 +20,7 @@
           }
              .custom-navbar-section .drop-menu-style{
          /*border: 0px solid transparent;*/
-         background-color: #e9414f;
+         background-color: #5F39E2;
          color:#ffffff;
          border-radius: 5px !important;
          padding:10px;
@@ -72,7 +72,7 @@
 /*------------Media Querry End ----------*/
         .custom-navbar-section .drop-menu-style{
          /*border: 0px solid transparent;*/
-         background-color: #e9414f;
+         background-color: #5F39E2;
          color:#ffffff;
          border-radius: 5px !important;
          padding:10px;
@@ -82,7 +82,7 @@
          font-size: 14px;
          padding: 5px 10px !important;
          color: #fff !important;
-         background-color: #e9414f;
+         background-color: #5F39E2;
          text-transform: capitalize;
          border-radius: 5px !important;
          }
@@ -129,7 +129,7 @@
          clear: both;
          }
          .custom-navbar-section .dropdown-item:focus, .dropdown-item:hover{
-         background-color: #e9414f;
+         background-color: #5F39E2;
          }
          .icon-right{
              float:right;
@@ -232,27 +232,29 @@
 <!--                            <li class="nav-item">
                               <a class="nav-link" href="/">Home</a>
                            </li>
+                           --->
                            <li class="nav-item dropdown">
-                              <a class="nav-link dropdown-toggle" href="" id="navbarDropdown_1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#">Shop</a>
+                              <a class="nav-link dropdown-toggle" href="" id="navbarDropdown_1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#">Categories</a>
                               <ul class="drop-menu-style dropdown-menu" style="width: 250px;margin-top: -10px;">
-                                <%# Category.order('LOWER(title)').each do |category| %>
-                                  <li><a class="dropdown-item" href="/product_category?type=<%#= category.title.gsub(" ", "_") %>"> <%#= category.title %>
-                                    <%# if category.product_categories.present? %>
+                                <% Category.order('LOWER(title)').each do |category| %>
+                                  <li><a class="dropdown-item" href="/product_category?type=<%= category.title.gsub(" ", "_") %>"> <%= category.title %>
+                                    <% if category.product_categories.present? %>
                                       <span class="icon-right"><i class="fa fa-caret-right" aria-hidden="true"></i></span>
-                                    <%# end %>
+                                    <% end %>
                                   </a>
 
-                                  <%# if category.product_categories.present? %>
-                                    <ul class="drop-menu-style <%#= category.product_categories.count > 6 ? 'custom-mega-menu-style' : '' %>" style="width: 250px; margin-top: -10px;">
-                                      <%# category.product_categories.order('LOWER(title)').each do |product_category| %>
-                                        <li > <a href="/product_category?type=<%#= category.title %>&category=<%#= product_category.title %>"> <%#= product_category.title %></a></li>
-                                      <%# end %>
+                                  <% if category.product_categories.present? %>
+                                    <ul class="drop-menu-style <%= category.product_categories.count > 6 ? 'custom-mega-menu-style' : '' %>" style="width: 250px; margin-top: -10px;">
+                                      <% category.product_categories.order('LOWER(title)').each do |product_category| %>
+                                        <li > <a href="/product_category?type=<%= category.title %>&category=<%= product_category.title %>"> <%= product_category.title %></a></li>
+                                      <% end %>
                                     </ul>
-                                  <%# end %>
+                                  <% end %>
                                   </li>
-                                <%# end %>
+                                <% end %>
                               </ul>
                            </li>
+                           <!--
                            <li class="nav-item">
                               <a class="nav-link" href="/products/promotions">Promotions</a>
                            </li>

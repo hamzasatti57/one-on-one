@@ -6,18 +6,10 @@ class Category < ApplicationRecord
   has_many :product_categories
   belongs_to :parent, class_name: "Category", optional: true
   has_one_attached :image
-  has_one_attached :banner_image
 
   enum category_type: {
-    "General" => 1,
-    "Home Page" => 2
-  }  
-
-  def self.product_categories
-    ["Furniture", "Kitchens", "Paints", "Tiles", "Sanitary", "Doors & Wardrobes" ]
-  end
-
-  def self.project_categories
-    ["Interior Designer", "Architects", "Product Designer"]
-  end
+    "Featured" => 1,
+    "Popular" => 2,
+    "New" => 3
+  }
 end

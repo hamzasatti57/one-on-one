@@ -32,15 +32,6 @@
     <%= f.label :image, "Home Page Image" %> <br>
   <%= f.file_field :image %><br><br>
   </div>
-  <div id="image_<%= category.banner_image %>">
-    <% if category.banner_image.present? %>
-      <%= image_tag(url_for(category.banner_image), style: "width: 100px") %>
-    <% end %>
-  </div><br>
-  <div class="form-group">
-    <%= f.label :banner_image %> <br>
-  <%= f.file_field :banner_image %><br><br>
-  </div>
   <%= f.submit class: "btn btn-block custom-table-edit-btn btn-primary"%>
 <% end %>
 <script>
