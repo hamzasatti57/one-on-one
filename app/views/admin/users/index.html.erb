@@ -7,7 +7,7 @@
   }
 </style>
 <div class="card">
-  <div class="card-header custom-card-header"> All Customers</div>
+  <div class="card-header custom-card-header"> All Users</div>
   <div class="card-body">
     <div class="row">
       <div class="col-lg-12">
@@ -23,10 +23,10 @@
             <th>First Name</th>
             <th>Last Name</th>
             <th>Email</th>
-            <th>Address</th>
+            <!-- <th>Address</th> -->
             <!-- <th>City</th> -->
             <!-- <th>Category</th> -->
-            <th>Cellphone Number</th>
+            <!-- <th>Cellphone Number</th> -->
             <!-- <th>Status</th> -->
             <!-- <th>AAA</th> -->
             <th>Actions</th>
@@ -39,11 +39,11 @@
               <td><%= user.first_name %></td>
               <td><%= user.last_name %></td>
               <td><%= user.email %></td>
-              <% address = BillingAddress.where(is_primary: true, user_id: user.id).present? ? BillingAddress.where(is_primary: true, user_id: user.id).last : nil  %>
-              <td><%= address.present? ? address.address : "" %></td>
+              <%# address = BillingAddress.where(is_primary: true, user_id: user.id).present? ? BillingAddress.where(is_primary: true, user_id: user.id).last : nil  %>
+              <!-- <td><%#= address.present? ? address.address : "" %></td> -->
               <!-- <td><%#= user.city.title %></td> -->
               <!-- <td><%#= user.category_title %></td> -->
-              <td><%= user.contact_details %></td>
+              <!-- <td><%#= user.contact_details %></td> -->
               <!-- <td><%#= user.active ? 'Active' : 'Inacitve' %></td> -->
               <!-- <td><%#= user.AAA ? 'Yes' : 'No' %></td> -->
               <td style="display: flex;"><%= link_to "Edit",  edit_admin_user_path(user), class: "btn btn-xs btn-primary custom-table-edit-btn" %>

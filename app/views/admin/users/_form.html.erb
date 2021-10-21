@@ -21,33 +21,33 @@
     <%#= f.label :City %>
     <%#= f.select(:city_id, options_for_select(city_options(user), selected: selected_city(user)), { prompt: "Please Select City" }, { :required => true, class: 'form-control' } ,) %>
   </div> -->
-  <div class="form-group">
-    <%= f.label :username %>
-    <%= f.text_field :username, class: "form-control", autocomplete: false, placeholder: "Username", :required => true %> <br/>
-  </div>
+  <!-- <div class="form-group">
+    <%#= f.label :username %>
+    <%#= f.text_field :username, class: "form-control", autocomplete: false, placeholder: "Username", :required => true %> <br/>
+  </div> -->
   <div class="form-group">
     <%= f.label :Email %>
     <%= f.text_field :email, class: "form-control", autocomplete: false, placeholder: "Email" , :required => true%> <br/>
   </div>
 
-  <% if hide_password? user %>
-    <div class="form-group">
-      <%= f.label :Password %>
-      <%= f.password_field :password, class: "form-control", autocomplete: false, placeholder: "Password" , :required => true%> <br/>
+  <%# if hide_password? user %>
+    <!-- <div class="form-group">
+      <%#= f.label :Password %>
+      <%#= f.password_field :password, class: "form-control", autocomplete: false, placeholder: "Password" , :required => true%> <br/>
     </div>
     <div class="form-group">
-      <%= f.label :password_confirmation,"Password Confirmation" %>
-      <%= f.password_field :password_confirmation, class: "form-control", autocomplete: false, placeholder: "Password Confirmation" ,:required => true %> <br/>
+      <%#= f.label :password_confirmation,"Password Confirmation" %>
+      <%#= f.password_field :password_confirmation, class: "form-control", autocomplete: false, placeholder: "Password Confirmation" ,:required => true %> <br/>
     </div>
-  <% end %>
+  <%# end %>
     <div class="form-group">
-    <%= f.label :contact_details %>
-    <%= f.text_field :contact_details, class: "form-control", autocomplete: false, placeholder: "Cellphone" %> <br/>
+    <%#= f.label :contact_details %>
+    <%#= f.text_field :contact_details, class: "form-control", autocomplete: false, placeholder: "Cellphone" %> <br/>
   </div>
   <div class="form-group">
-    <%= f.label :dob, "DOB" %>
-    <%= f.text_field :dob, class: "form-control", autocomplete: false, placeholder: "Date of Birth" %> <br/>
-  </div>
+    <%#= f.label :dob, "DOB" %>
+    <%#= f.text_field :dob, class: "form-control", autocomplete: false, placeholder: "Date of Birth" %> <br/>
+  </div> -->
 <!--   <div class="form-group">
     <%#= f.label :Category %>
     <%#= f.select(:category_id, options_for_select(category_options, selected: selected_category(user)), { prompt: "Please Select Category" }, { :required => true, class: 'form-control' }) %>

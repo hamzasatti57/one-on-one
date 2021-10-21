@@ -61,11 +61,11 @@ class User < ApplicationRecord
   end
 
   def display_products?
-    Category.product_categories.include? self.category_title
+    # Category.product_categories.include? self.category_title
   end
 
   def display_projects?
-    Category.project_categories.include? self.category_title
+    # Category.project_categories.include? self.category_title
   end
 
   private
